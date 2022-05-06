@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "./store/userReducer";
 import { setNews } from "./store/newsReducer";
@@ -33,7 +33,7 @@ const App = () => {
       <Header user={user} />
       <Routes>
         <Route exact path="/" element={<Home user={user} />} />
-        <Route exact path="/news" element={<News user={user} />} />
+        <Route path="/news" element={<News user={user} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

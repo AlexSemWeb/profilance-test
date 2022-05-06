@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 
 // components
 import ButtonSmall from "../UI/ButtonSmall";
+///images
+import { ReactComponent as Add } from "../../assets/icons/approve.svg";
+import { ReactComponent as Cancel } from "../../assets/icons/cancel.svg";
 
 // utils
 import { converDate } from "../../helpers/utils";
@@ -23,9 +26,17 @@ const Card = ({
       {user && user.isAdmin && (
         <div className="card__buttons">
           {!isApproved && (
-            <ButtonSmall onClick={() => approveCard(time)} type="add" />
+            <ButtonSmall
+              onClick={() => approveCard(time)}
+              type="add"
+              children={<Add />}
+            />
           )}
-          <ButtonSmall type="cancel" onClick={() => deleteCard(time)} />
+          <ButtonSmall
+            type="cancel"
+            onClick={() => deleteCard(time)}
+            children={<Cancel />}
+          />
         </div>
       )}
       <span className="card__time">{converDate(time)}</span>

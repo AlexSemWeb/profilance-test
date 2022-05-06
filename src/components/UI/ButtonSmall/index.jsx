@@ -1,26 +1,22 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-///images
-import Add from "../../../assets/icons/approve.svg";
-import Cancel from "../../../assets/icons/cancel.svg";
-
 // styles
 import "./style.scss";
 
-const ButtonSmall = ({ type, ...props }) => {
+const ButtonSmall = ({ type, children, ...props }) => {
   let btnClass = classNames("btn-small", type);
-  let backgroundImg = {
-    backgroundImage: `url(${type === "cancel" ? Cancel : Add})`,
-  };
 
   return (
-    <button style={backgroundImg} className={btnClass} {...props}></button>
+    <button className={btnClass} {...props}>
+      {children}
+    </button>
   );
 };
 
 ButtonSmall.propTypes = {
   type: PropTypes.string,
+  children: PropTypes.node,
 };
 
 ButtonSmall.defaultProps = {
