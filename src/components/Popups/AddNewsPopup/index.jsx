@@ -14,24 +14,23 @@ import Label from "../../UI/Label";
 // utils
 import { checkEmptyFields } from "../../../helpers/validate";
 
+const defaultState = {
+  title: "",
+  text: "",
+};
+
 const AddNewsPopup = ({ user }) => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [newsInfo, setNewsInfo] = useState(defaultState);
   const [error, setError] = useState({ title: false, text: false });
 
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.value);
-    setError({ ...error, title: false });
-  };
-
-  const handleChangeText = (e) => {
-    setText(e.target.value);
-    setError({ ...error, text: false });
+  const handleChange = (e) => {
+    setNewsInfo({ ...newsInfo, [e.target.name]: e.target.value });
+    setError({ ...error, [e.target.name]: false });
   };
 
   const handleSubmit = (close) => {
-    let validation = checkEmptyFields({ title, text });
+    let validation = checkEmptyFields(newsInfo);
 
     if (validation) {
       setError({ ...error, ...validation });
@@ -40,15 +39,14 @@ const AddNewsPopup = ({ user }) => {
 
     dispatch(
       addNews({
-        title: title.trim(),
-        text: text.trim(),
+        title: newsInfo.title.trim(),
+        text: newsInfo.text.trim(),
         isApproved: user.isAdmin,
         time: new Date().getTime(),
       })
     );
 
-    setTitle("");
-    setText("");
+    setNewsInfo(defaultState);
     close();
   };
 
@@ -65,10 +63,20 @@ const AddNewsPopup = ({ user }) => {
       {(close) => (
         <PopupWrapper close={close} title="Добавить новость">
           <Label title="Название новости" error={error.title}>
-            <Input type="text" value={title} onChange={handleChangeTitle} />
+            <Input
+              type="text"
+              name="title"
+              value={newsInfo.title}
+              onChange={handleChange}
+            />
           </Label>
           <Label title="Текст новости" error={error.text}>
-            <Textarea rows="10" value={text} onChange={handleChangeText} />
+            <Textarea
+              rows="10"
+              value={newsInfo.text}
+              name="text"
+              onChange={handleChange}
+            />
           </Label>
           <Button onClick={() => handleSubmit(close)}>Добавить новость</Button>
         </PopupWrapper>
