@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom"; // HashRouter для деплоя
 import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "./store/userReducer";
 import { setNews } from "./store/newsReducer";
