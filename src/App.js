@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUsers } from "./store/userReducer";
+import { setNews } from "./store/newsReducer";
 
-function App() {
+// components
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import News from "./pages/News";
+import NotFound from "./pages/404";
+
+// data
+import { news } from "./data/news";
+
+const App = () => {
+  const user = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let userFromStorage = localStorage.getItem("user");
+
+    if (userFromStorage) {
+      let parsedUser = JSON.parse(userFromStorage);
+      dispatch(setUsers(parsedUser.login ? parsedUser : null));
+    }
+
+    dispatch(setNews(news));
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header user={user} />
+      <Routes>
+        <Route exact path="/" element={<Home user={user} />} />
+        <Route exact path="/news" element={<News user={user} />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

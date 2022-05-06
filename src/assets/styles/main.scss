@@ -1,0 +1,23 @@
+@import "./reset";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  color: #000000;
+}
+
+html,
+body {
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.visualy-hidden {
+  display: none;
+}

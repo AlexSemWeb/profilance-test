@@ -1,0 +1,20 @@
+.btn-small {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 0;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  &.add {
+    background-color: rgb(23, 199, 23);
+    background-image: url(../../../assets/icons/approve.svg);
+  }
+
+  &.cancel {
+    background-color: crimson;
+    background-image: url(../../../assets/icons/cancel.svg);
+  }
+}

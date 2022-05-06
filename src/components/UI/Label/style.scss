@@ -1,0 +1,27 @@
+.label {
+  display: flex;
+  flex-direction: column;
+
+  &.__error {
+    .textarea,
+    .input {
+      border-color: crimson;
+    }
+
+    .label__error {
+      visibility: visible;
+    }
+  }
+
+  &__error {
+    margin-top: 3px;
+    font-size: 12px;
+    color: crimson;
+    visibility: hidden;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+}

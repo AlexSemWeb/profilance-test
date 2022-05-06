@@ -1,0 +1,34 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid rgb(223, 152, 20);
+  border-radius: 10px;
+
+  &__buttons {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    .btn-small {
+      margin-left: 5px;
+    }
+  }
+
+  &__time {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: gray;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__text {
+    font-size: 16px;
+  }
+}
