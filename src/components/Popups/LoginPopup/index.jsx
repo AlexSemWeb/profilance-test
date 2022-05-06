@@ -3,10 +3,8 @@ import { useDispatch } from "react-redux";
 import { setUsers } from "../../../store/userReducer";
 
 // components
-import Popup from "reactjs-popup";
 import PopupWrapper from "../PopupWrapper";
 import Label from "../../UI/Label";
-import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 
 // utils
@@ -36,7 +34,9 @@ const LoginPopup = () => {
     setIsNotValidUser(false);
   };
 
-  const handleSubmit = (close) => {
+  const handleSubmit = (e, close) => {
+    e.preventDefault();
+
     let validationFields = checkEmptyFields(loginInfo);
 
     if (validationFields) {
@@ -58,33 +58,35 @@ const LoginPopup = () => {
     close();
   };
 
+  const popupButton = <span className="header__link">Вход</span>;
+
   return (
-    <Popup trigger={<span className="header__link">Вход</span>} modal nested>
-      {(close) => (
-        <PopupWrapper close={close} title="Вход">
-          {isNotValidUser && (
-            <p className="popup-error">Неверный пользователь/пароль</p>
-          )}
-          <Label title="Логин" error={error.login}>
-            <Input
-              type="text"
-              name="login"
-              value={loginInfo.login}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label title="Пароль" error={error.password}>
-            <Input
-              type="password"
-              name="password"
-              value={loginInfo.password}
-              onChange={handleChange}
-            />
-          </Label>
-          <Button onClick={() => handleSubmit(close)}>Вход</Button>
-        </PopupWrapper>
+    <PopupWrapper
+      title="Вход"
+      closeButton={popupButton}
+      handleSubmit={handleSubmit}
+    >
+      {isNotValidUser && (
+        <p className="popup-error">Неверный пользователь/пароль</p>
       )}
-    </Popup>
+      <Label title="Логин" error={error.login}>
+        <Input
+          type="text"
+          name="login"
+          value={loginInfo.login}
+          onChange={handleChange}
+        />
+      </Label>
+      <Label title="Пароль" error={error.password}>
+        <Input
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          value={loginInfo.password}
+          onChange={handleChange}
+        />
+      </Label>
+    </PopupWrapper>
   );
 };
 

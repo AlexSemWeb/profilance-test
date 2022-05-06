@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { addNews } from "../../../store/newsReducer";
 
 // components
-import Popup from "reactjs-popup";
 import PopupWrapper from "../PopupWrapper";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
@@ -29,7 +28,9 @@ const AddNewsPopup = ({ user }) => {
     setError({ ...error, [e.target.name]: false });
   };
 
-  const handleSubmit = (close) => {
+  const handleSubmit = (e, close) => {
+    e.preventDefault();
+
     let validation = checkEmptyFields(newsInfo);
 
     if (validation) {
@@ -50,42 +51,37 @@ const AddNewsPopup = ({ user }) => {
     close();
   };
 
+  const popupButton = (
+    <Button>{user.isAdmin ? "Добавить новость" : "Предложить новость"}</Button>
+  );
+
   return (
-    <Popup
-      trigger={
-        <Button>
-          {user.isAdmin ? "Добавить новость" : "Предложить новость"}
-        </Button>
-      }
-      modal
-      nested
+    <PopupWrapper
+      title="Добавить новость"
+      closeButton={popupButton}
+      handleSubmit={handleSubmit}
     >
-      {(close) => (
-        <PopupWrapper close={close} title="Добавить новость">
-          <Label title="Название новости" error={error.title}>
-            <Input
-              type="text"
-              name="title"
-              value={newsInfo.title}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label title="Текст новости" error={error.text}>
-            <Textarea
-              rows="10"
-              value={newsInfo.text}
-              name="text"
-              onChange={handleChange}
-            />
-          </Label>
-          <Button onClick={() => handleSubmit(close)}>Добавить новость</Button>
-        </PopupWrapper>
-      )}
-    </Popup>
+      <Label title="Название новости" error={error.title}>
+        <Input
+          type="text"
+          name="title"
+          value={newsInfo.title}
+          onChange={handleChange}
+        />
+      </Label>
+      <Label title="Текст новости" error={error.text}>
+        <Textarea
+          rows="10"
+          value={newsInfo.text}
+          name="text"
+          onChange={handleChange}
+        />
+      </Label>
+    </PopupWrapper>
   );
 };
 
-Popup.propTypes = {
+AddNewsPopup.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.instanceOf(null)]),
 };
 

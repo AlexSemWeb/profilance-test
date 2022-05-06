@@ -1,12 +1,16 @@
 .popup {
   position: relative;
-  display: flex;
-  flex-direction: column;
+
   width: 640px;
   max-width: calc(100vw - 20px);
   padding: 30px 20px;
   background-color: white;
   border-radius: 20px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 
   .label {
     margin-bottom: 10px;
