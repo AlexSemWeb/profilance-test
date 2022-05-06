@@ -21,8 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-build/asset-manifest.json
-build/index.html
-build/static/js/main.1435af05.js
-build/static/js/main.1435af05.js.LICENSE.txt
-build/static/js/main.1435af05.js.map
