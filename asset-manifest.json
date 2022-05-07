@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/profilance-test/static/css/main.74711e24.css",
-    "main.js": "/profilance-test/static/js/main.a5578e1d.js",
+    "main.js": "/profilance-test/static/js/main.27045f3d.js",
     "static/media/logo.svg": "/profilance-test/static/media/logo.2890a03d14eb05df134c548ef64a354c.svg",
     "static/media/cancel.svg": "/profilance-test/static/media/cancel.0f18dcba3c24ccd812e286bf0d238416.svg",
     "index.html": "/profilance-test/index.html",
     "static/media/approve.svg": "/profilance-test/static/media/approve.ff00706ffd8561b8879f57308ff46acb.svg",
     "main.74711e24.css.map": "/profilance-test/static/css/main.74711e24.css.map",
-    "main.a5578e1d.js.map": "/profilance-test/static/js/main.a5578e1d.js.map"
+    "main.27045f3d.js.map": "/profilance-test/static/js/main.27045f3d.js.map"
   },
   "entrypoints": [
     "static/css/main.74711e24.css",
-    "static/js/main.a5578e1d.js"
+    "static/js/main.27045f3d.js"
   ]
 }
